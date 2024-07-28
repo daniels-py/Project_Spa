@@ -20,5 +20,5 @@ from django.urls import path, include
 #este aparato incluira todas las vistas de nuestra aplicacion 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('inventario/',include('inventario.urls')),
+     path('',include('inventario.urls')),
 ]

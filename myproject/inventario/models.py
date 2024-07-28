@@ -118,3 +118,6 @@ class CaracteristicaColor(models.Model):
     class Meta:
         verbose_name = 'Característica de Color'
         verbose_name_plural = 'Características de Color'
+
+
+
