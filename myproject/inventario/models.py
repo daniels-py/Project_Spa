@@ -1,10 +1,5 @@
 from django.db import models
- 
 from django.utils import timezone
-
-# Create your models here.
-
-
 
 # Modelo para representar categorías de productos
 class Categoria(models.Model):
@@ -45,12 +40,14 @@ class Presentacion(models.Model):
 
 # Modelo para representar productos
 class Producto(models.Model):
+    codigo_producto = models.CharField(max_length=255, default='0000', verbose_name='Código del Producto')
     nombre = models.CharField(max_length=255, verbose_name='Nombre del Producto')
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name='Categoría')
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE, verbose_name='Marca')
     presentacion = models.ForeignKey(Presentacion, on_delete=models.CASCADE, verbose_name='Presentación')
     precio = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Precio')
     descripcion = models.TextField(verbose_name='Descripción')
+    cantidad = models.PositiveIntegerField(default=0, verbose_name='Cantidad en Inventario')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de Creación')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Fecha de Actualización')
 
@@ -65,12 +62,11 @@ class Producto(models.Model):
 # Modelo para representar el inventario de productos
 class Inventario(models.Model):
     producto = models.OneToOneField(Producto, on_delete=models.CASCADE, verbose_name='Producto')
-    cantidad = models.PositiveIntegerField(verbose_name='Cantidad en Inventario')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de Creación')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Fecha de Actualización')
 
     def __str__(self):
-        return f'{self.producto.nombre} - {self.cantidad} unidades'
+        return f'{self.producto.codigo_producto} - {self.producto.nombre}'
 
     class Meta:
         verbose_name = 'Inventario'
@@ -105,6 +101,7 @@ class Venta(models.Model):
         verbose_name_plural = 'Ventas'
 
 
+# Modelo para representar las características por color 
 class CaracteristicaColor(models.Model):
     producto = models.OneToOneField(Producto, on_delete=models.CASCADE, verbose_name='Producto')
     codigo_color = models.CharField(max_length=50, verbose_name='Código de Color')
@@ -118,6 +115,3 @@ class CaracteristicaColor(models.Model):
     class Meta:
         verbose_name = 'Característica de Color'
         verbose_name_plural = 'Características de Color'
-
-
-
