@@ -13,8 +13,9 @@ def Portada(request):
 class ListarCategorias(View):
     def get(self, request):
         datos = Categoria.objects.all()
-        datos_categorias = [{'nombre': i.nombre, 'descripcion': i.descripcion} for i in datos]
+        datos_categorias = [{'id': i.id, 'nombre': i.nombre, 'descripcion': i.descripcion} for i in datos]
         return JsonResponse(datos_categorias, safe=False)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CrearCategoria(View):

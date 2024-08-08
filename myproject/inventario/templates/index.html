@@ -1,16 +1,29 @@
-
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Categorías</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/test.js' %}"></script>
 </head>
 <body>
-
-    <section>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque at ipsam ipsum odio quasi ratione ullam sequi, quia incidunt nostrum, sit debitis illo animi culpa provident reiciendis ad rerum praesentium?</p>
-    </section>
-    
+    <h1>Lista de Categorías</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-categorias-body">
+            <!-- Los datos se llenarán aquí con JavaScript -->
+        </tbody>
+    </table>
 </body>
 </html>
+
+
+
